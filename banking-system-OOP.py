@@ -25,61 +25,85 @@ class Account(User):
   def accountInfo(self):
     self.info()
     print("Balance:",self.balance)
+    input('<-- Press "Enter" For Go Back')  
     
   def invest(self):
+    print("\n***Investing***") 
     amount = int(input("Enter The Amount:")) 
     self.balance += amount
     print("Invest Successful\nNew Balance:", self.balance) 
+    input('<-- Press "Enter" For Go Back')     
     
   def withdrawal(self):
+    print("\n***Withdrawaling***") 
     amount = int(input("Enter The Amount:"))
+    print("Balance:",self.balance) 
     if amount > self.balance:
       print("Insufficient Balance!")
+      input('<-- Press "Enter" For Go Back')  
     else:
       self.balance -= amount
       print("Withdrawal Successful\nNew Balance:", self.balance) 
+      input('<-- Press "Enter" For Go Back') 
     
   def getCredit(self):
-    self.interestRate = self.age / 1000 #Interest Rate Direct Proportion With Age
-    amount = int(input("Enter Credit Amount:"))
-    self.creditReturn = amount + (amount * self.interestRate) 
-    self.balance += amount
-    print("Credit Process Successful!")
-    print("Interest Rate:",self.interestRate) 
-    print("New Balance:",self.balance) 
-    print("Credit Return:",int(self.creditReturn))
-  
+    print("\n***Credit Application***")
+    if self.creditReturn == 0:
+      self.interestRate = self.age / 250 #Interest Rate Direct Proportion With Age
+      amount = int(input("Enter Credit Amount:"))
+      self.creditReturn = amount + (amount * self.interestRate) 
+      self.balance += amount
+      print("Credit Process Successful!")
+      print("Interest Rate:",self.interestRate) 
+      print("New Balance:",self.balance) 
+      print("Credit Return:",int(self.creditReturn))
+      input('<-- Press "Enter" For Go Back') 
+    else:
+      print("You Was Already Get An Credit!\nFirstly Pay Your Credit Returns")
+      self.loans()
+
   def loans(self):
-    print("***Your Loans***") 
+    print("\n***Your Loans***") 
     if self.creditReturn == 0:
       print("You Don't Have Any Loan!")
+      input('<-- Press "Enter" For Go Back') 
     else:
       print("You Have An Loan") 
       print("Repayable Amount:",int(self.creditReturn)) 
+      input('<-- Press "Enter" For Go Back') 
 
   def repayLoan(self):
+    print("\n***Loan Payment***")
     if self.creditReturn > 0:
+      print("Your Loan:",int(self.creditReturn)) 
       amount = int(input("Enter The Repay Amount:"))
       if amount > self.balance:
         print("Insufficient Balance!") 
+        input('<-- Press "Enter" For Go Back') 
+      elif amount == 0:
+        print("Please Enter Any Amount!") 
+        input('<-- Press "Enter" For Go Back')  
       else:
         if amount > self.creditReturn:
           print("Amount Bigger Than Your Loan!") 
-          print("Your Loan:",int(self.creditReturn)) 
+          print("Your Loan:",int(self.creditReturn))
+          input('<-- Press "Enter" For Go Back') 
         elif amount == self.creditReturn:
           print("You Was Pay All Your Loans!")
           self.creditReturn -= amount           
           self.balance -= amount
           print("Account Balance: {}\nLoan: {}".format(self.balance, int(self.creditReturn))) 
+          input('<-- Press "Enter" For Go Back') 
         else:
           print("You Was Pay A Little Bit Loan!")
           self.creditReturn -= amount
           self.balance -= amount
           print("Account Balance: {}\nLoan: {}".format(self.balance, int(self.creditReturn))) 
+          input('<-- Press "Enter" For Go Back') 
     else:
       print("You Don't Have Any Loan!")
-         
-
+      input('<-- Press "Enter" For Go Back')  
+ 
 print("***New Account Creating***")
 name = str(input("Enter Your Name:"))
 surname = str(input("Enter Your Surname:")) 
@@ -124,8 +148,11 @@ while True:
     ac1.repayLoan()
     time.sleep(0.8)
 
+  elif move == "":
+    print("Please Enter Any Move!") 
+
   else:
     time.sleep(0.7)
     print("Undefined Movement!")
     time.sleep(0.8)
-    
+  
