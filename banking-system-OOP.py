@@ -2,7 +2,7 @@
 
 import time
 
-class user(object):
+class User(object):
 
   def __init__(self, name, surname, age):
     self.name = name
@@ -15,7 +15,7 @@ class user(object):
     print("Surname:", self.surname)
     print("Age:", self.age)
 
-class account(user):
+class Account(User):
 
   def __init__(self, name, surname, age, balance=0, creditReturn=0):
     super().__init__(name, surname, age)
@@ -87,7 +87,7 @@ age = int(input("Enter Your Age:"))
     
 print("\nAccount Created Successfully!")
     
-ac1 = account(name, surname, age)
+ac1 = Account(name, surname, age)
 
 while True:
 
