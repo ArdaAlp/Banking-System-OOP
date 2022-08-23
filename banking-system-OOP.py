@@ -113,46 +113,19 @@ print("\nAccount Created Successfully!")
     
 ac1 = Account(name, surname, age)
 
-while True:
-
-  print("\n***Movements***")
-  move = int(input("1-Account Details\n2-Invest\n3-Withdrawal\n4-Get Credit\n5-My Loans\n6-Pay Loans\nYour Movement:"))
-
-  if move == 1:
-    time.sleep(0.7)
-    ac1.accountInfo()
-    time.sleep(0.8) 
-
-  elif move == 2:
-    time.sleep(0.7)
-    ac1.invest()
-    time.sleep(0.8)
-
-  elif move == 3:
-    time.sleep(0.7)
-    ac1.withdrawal()
-    time.sleep(0.8)
-
-  elif move == 4:
-    time.sleep(0.7)
-    ac1.getCredit() 
-    time.sleep(0.8)
-    
-  elif move == 5:
-    time.sleep(0.7)
-    ac1.loans()
-    time.sleep(0.8)
-    
-  elif move == 6:
-    time.sleep(0.7)
-    ac1.repayLoan()
-    time.sleep(0.8)
-
-  elif move == "":
-    print("Please Enter Any Move!") 
-
-  else:
-    time.sleep(0.7)
-    print("Undefined Movement!")
-    time.sleep(0.8)
+def move():
+  movements = {
+    "1": ac1.accountInfo, 
+    "2": ac1.invest, 
+    "3": ac1.withdrawal, 
+    "4": ac1.getCredit, 
+    "5": ac1.loans, 
+    "6": ac1.repayLoan
+  }
   
+  move = str(input("1-Account Details\n2-Invest\n3-Withdrawal\n4-Get Credit\n5-My Loans\n6-Pay Loans\nYour Movement:"))
+  return movements[move]()
+    
+while True:
+  print("\n***Movements***")
+  move()
