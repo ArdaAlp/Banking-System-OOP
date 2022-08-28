@@ -3,9 +3,10 @@
 import time
 import random
 
+
 class User(object):
 
-    def __init__(self, name, surname, age, accountCheck=True):
+    def __init__(self, name, surname, age, accountCheck=True,):
         self.name = name
         self.surname = surname
         self.age = age
@@ -54,7 +55,10 @@ class Account(User):
         if self.creditReturn == 0:
             self.interestRate = self.age / 250  # Interest Rate Direct Proportion With Age
             amount = int(input("Enter Credit Amount:"))
-            self.creditReturn = amount + (amount * self.interestRate)
+            if amount <= 250:
+                self.creditReturn = amount + self.age
+            else:
+                self.creditReturn = amount + (amount * self.interestRate)
             self.balance += amount
             print("Credit Process Successful!")
             print("Interest Rate:", self.interestRate)
@@ -108,22 +112,27 @@ class Account(User):
         else:
             print("You Don't Have Any Loan!")
             input('<-- Press "Enter" For Go Back')
-    
+
     def deleteAccount(self):
         print("\n***Account Delete Process***")
-        ensure = str(input("Are You Sure? (YES/NO): "))
-        ensure = ensure.upper()
-        if ensure == "NO":
-            print("\nAccount Delete Process Canceled! \nAccount Doesn't Deleted")
+        if self.creditReturn > 0:
+            print("You Have An Loan You Must Pay It Firstly!\n-Nice Try :)")
             input('<-- Press "Enter" For Go Back')
-        elif ensure == "YES":
-            code = random.randrange(10000,99999)
-            codeCheck = int(input("Please Enter The Code! (Code:{}) \nCode: ".format(code)))
-            if codeCheck == code:
-                print("The Code Is Correct! \nAccount Deleted! \n\n----- Thanks For You Choose The Us... -----")
-                self.accountCheck = False
+        else:
+            ensure = str(input("Are You Sure? (YES/NO): "))
+            ensure = ensure.upper()
+            if ensure == "NO":
+                print("\nAccount Delete Process Canceled! \nAccount Doesn't Deleted")
                 input('<-- Press "Enter" For Go Back')
-            else:
-                print("Invalid Code! \nProcess Canceled, Account Doesn't Deleted!")
-                input('<-- Press "Enter" For Go Back')
-        
+            elif ensure == "YES":
+                code = random.randrange(10000, 99999)
+                codeCheck = int(
+                    input("Please Enter The Code! (Code:{}) \nCode: ".format(code)))
+                if codeCheck == code:
+                    print(
+                        "The Code Is Correct! \nAccount Deleted! \n\n----- Thanks For You Choose The Us... -----")
+                    self.accountCheck = False
+                    input('<-- Press "Enter" For Create New Account')
+                else:
+                    print("Invalid Code! \nProcess Canceled, Account Doesn't Deleted!")
+                    input('<-- Press "Enter" For Go Back')
