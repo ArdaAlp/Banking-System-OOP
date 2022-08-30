@@ -6,11 +6,10 @@ import random
 
 class User(object):
 
-    def __init__(self, name, surname, age, accountCheck=True,):
+    def __init__(self, name, surname, age):
         self.name = name
         self.surname = surname
         self.age = age
-        self.accountCheck = accountCheck
 
     def info(self):
         print("\n***Account Details***")
@@ -21,10 +20,11 @@ class User(object):
 
 class Account(User):
 
-    def __init__(self, name, surname, age, balance=0, creditReturn=0):
+    def __init__(self, name, surname, age, balance=0, creditReturn=0, accountCheck=True):
         super().__init__(name, surname, age)
         self.balance = balance
         self.creditReturn = creditReturn
+        self.accounCheck = accountCheck
 
     def accountInfo(self):
         self.info()
