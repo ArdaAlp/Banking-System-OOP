@@ -24,10 +24,8 @@ while True:
                     "99": ac1.deleteAccount
                 }
 
-                move = str(input(
-                    "1-Account Details\n2-Invest\n3-Withdrawal\n4-Get Credit\n5-My Loans\n6-Pay Loans\n99-Delete Account\nYour Movement:"))
+                move = str(input("1-Account Details\n2-Invest\n3-Withdrawal\n4-Get Credit\n5-My Loans\n6-Pay Loans\n99-Delete Account\nYour Movement:"))
                 return movements[move]()
-
 
         while True:
             if ac1.accountCheck == False:
