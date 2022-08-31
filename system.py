@@ -3,7 +3,6 @@
 import time
 import random
 
-
 class User(object):
 
     def __init__(self, name, surname, age):
@@ -16,7 +15,6 @@ class User(object):
         print("Name:", self.name)
         print("Surname:", self.surname)
         print("Age:", self.age)
-
 
 class Account(User):
 
