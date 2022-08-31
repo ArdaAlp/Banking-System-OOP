@@ -22,7 +22,7 @@ class Account(User):
         super().__init__(name, surname, age)
         self.balance = balance
         self.creditReturn = creditReturn
-        self.accounCheck = accountCheck
+        self.accountCheck = accountCheck
 
     def accountInfo(self):
         self.info()

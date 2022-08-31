@@ -14,17 +14,10 @@ while True:
         ac1 = system.Account(name, surname, age)
 
         def move():
-                movements = {
-                    "1": ac1.accountInfo,
-                    "2": ac1.invest,
-                    "3": ac1.withdrawal,
-                    "4": ac1.getCredit,
-                    "5": ac1.loans,
-                    "6": ac1.repayLoan,
-                    "99": ac1.deleteAccount
-                }
+                movements = [ac1.accountInfo, ac1.invest, ac1.withdrawal, ac1.getCredit, ac1.loans, ac1.repayLoan, ac1.deleteAccount]
 
-                move = str(input("1-Account Details\n2-Invest\n3-Withdrawal\n4-Get Credit\n5-My Loans\n6-Pay Loans\n99-Delete Account\nYour Movement:"))
+                move = int(input("1-Account Details\n2-Invest\n3-Withdrawal\n4-Get Credit\n5-My Loans\n6-Pay Loans\n7-Delete Account\nYour Movement:"))
+                move = move - 1 ## List start with zeroth element so move must be move - 1
                 return movements[move]()
 
         while True:
