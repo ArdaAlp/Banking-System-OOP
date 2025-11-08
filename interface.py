@@ -29,5 +29,3 @@ while True:
 
     else:
         print("\nYou Must Be Bigger Than 18! \nAccount Not Created...")
-
-        print("tehre ise a test")
